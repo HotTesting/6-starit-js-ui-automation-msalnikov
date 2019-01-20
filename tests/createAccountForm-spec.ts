@@ -28,7 +28,6 @@ describe.only('Create Account form', () => {
         $(password).setValue('qwerty');
         $(confirmedPassword).setValue('qwerty');
         $(newsLetterCheckbox).click();
-// tslint:disable-next-line: no-unused-expression
         expect($(newsLetterCheckbox).isSelected()).to.be.true;
         $(createAccountBtn).click();
         expect($(alertSuccess).isVisible()).to.be.true;
