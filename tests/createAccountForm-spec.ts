@@ -1,13 +1,13 @@
-import { expect } from "chai"
+import { expect } from 'chai';
 
-describe.only('Create Account form', function() {
+describe.only('Create Account form', () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
         browser.url('/create_account');
         browser.pause(500);
     });
 
-    it('should create new User Account', function() {
+    it('should create new User Account', () => {
         const firstName = '.form-control[name="firstname"]';
         const lastName = '.form-control[name="lastname"]';
         const country = 'select[name=country_code]';
@@ -19,8 +19,8 @@ describe.only('Create Account form', function() {
         const alertSuccess = '.alert-success';
         const alertDanger = '.alert-danger';
         function randomValue() {
-            return Math.random().toString(36).slice(2)
-        };
+            return Math.random().toString(36).slice(2);
+        }
         $(firstName).setValue(randomValue());
         $(lastName).setValue(randomValue());
         $(country).selectByValue('UA');
@@ -28,6 +28,7 @@ describe.only('Create Account form', function() {
         $(password).setValue('qwerty');
         $(confirmedPassword).setValue('qwerty');
         $(newsLetterCheckbox).click();
+// tslint:disable-next-line: no-unused-expression
         expect($(newsLetterCheckbox).isSelected()).to.be.true;
         $(createAccountBtn).click();
         expect($(alertSuccess).isVisible()).to.be.true;

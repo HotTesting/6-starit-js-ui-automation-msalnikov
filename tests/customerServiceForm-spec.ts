@@ -1,29 +1,29 @@
-import { expect } from "chai"
+import { expect } from 'chai';
 
-describe('Customer Service form', function() {
+describe('Customer Service form', () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
         browser.url('/customer-service-s-0');
         browser.pause(500);
     });
 
-    it('should navigate to Customer Service form', function() {
-        const customerServiceLink = '.customer-service'
-        const contactUsContainer = '#box-customer-service'
-        browser.url('/')
+    it('should navigate to Customer Service form', () => {
+        const customerServiceLink = '.customer-service';
+        const contactUsContainer = '#box-customer-service';
+        browser.url('/');
         browser.pause(500);
-        $(customerServiceLink).click()
+        $(customerServiceLink).click();
         browser.pause(500);
         expect($(contactUsContainer).isVisible()).to.be.true;
     });
 
-    it('should submit Customer Service form', function() {
+    it('should submit Customer Service form', () => {
         const fieldLocators = {
-            name: 'form[name="contact_form"] [name="name"]',
             email: 'form[name="contact_form"] [name="email"]',
-            subject: 'form[name="contact_form"] [name="subject"]',
             message: 'form[name="contact_form"] [name="message"]',
-            sendBtn: 'form[name="contact_form"] [name="send"]'
+            name: 'form[name="contact_form"] [name="name"]',
+            sendBtn: 'form[name="contact_form"] [name="send"]',
+            subject: 'form[name="contact_form"] [name="subject"]'
         };
         const successMessage = $('.alert-success');
         $(fieldLocators.name).setValue('Name text');
@@ -34,14 +34,14 @@ describe('Customer Service form', function() {
         expect(successMessage.isVisible()).to.be.true;
     });
 
-    it('should contain correct address information', function() {
+    it('should contain correct address information', () => {
         const address = $('.address').getText();
         const phone = $('.phone').getText();
         const email = $('.email').getText();
         const expectedAddressValues = {
             address: 'My Store\nStreet\nPostcode City\nCountry',
-            phone: '+1-212-555-DUCK',
-            email: 'store@email.com'
+            email: 'store@email.com',
+            phone: '+1-212-555-DUCK'
         };
         expect(address).to.be.equal(expectedAddressValues.address);
         expect(phone).to.be.equal(expectedAddressValues.phone);
