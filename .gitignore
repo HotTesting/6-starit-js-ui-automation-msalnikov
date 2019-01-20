@@ -2,3 +2,4 @@
 node_modules/
 # compiled js and debug files
 built/
+.vscode/settings.json
