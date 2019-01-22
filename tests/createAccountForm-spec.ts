@@ -7,9 +7,8 @@ describe.only('Create Account form', () => {
         browser.pause(500);
     });
 
-    it.only('should create new User Account', () => {
-        const formControl = $('.form-control');
-        const firstName = $('[name="firstname"]');
+    it('should create new User Account', () => {
+        const firstName = '.form-control[name="firstname"]';
         const lastName = '.form-control[name="lastname"]';
         const country = 'select[name=country_code]';
         const email = '.col-md-6 .form-control[name="email"]';
@@ -20,7 +19,7 @@ describe.only('Create Account form', () => {
         const alertSuccess = '.alert-success';
         const alertDanger = '.alert-danger';
         const randomValue = Math.random().toString(36).slice(2);
-        firstName.setValue(randomValue);
+        $(firstName).setValue(randomValue);
         $(lastName).setValue(randomValue);
         $(country).selectByValue('UA');
         $(email).setValue(`${randomValue}@email.com`);
