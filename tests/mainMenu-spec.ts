@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 describe('Litecart main page', () => {
-    beforeEach(() => {
+    before(() => {
         browser.url('/');
         browser.waitForVisible('.col-xs-auto .logotype');
     });
