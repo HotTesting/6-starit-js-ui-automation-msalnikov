@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-describe('Create Account form', () => {
+describe.only('Create Account form', () => {
 
     beforeEach(() => {
         browser.url('/create_account');
