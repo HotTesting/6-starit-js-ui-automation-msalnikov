@@ -3,7 +3,7 @@ require('ts-node').register()
 
 exports.config = {
     specs: [
-        './tests/**/*.ts'
+        './tests/**/buy*.ts'
     ],
     port: '9515',
     path: '/',
@@ -20,5 +20,13 @@ exports.config = {
     framework: 'mocha',
     mochaOpts: {
         ui: 'bdd'
+    },
+    before: () => {
+        browser.timeouts('implicit', 2000);
+    },
+    afterHook: () => {
+        browser.timeouts('implicit', 2000);
+        browser.deleteCookie();
+        browser.sessionStorage('DELETE');
     }
 }
