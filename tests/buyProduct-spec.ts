@@ -1,21 +1,27 @@
 import { expect } from 'chai';
 import * as faker from 'faker';
+import { Client, Element, RawResult } from 'webdriverio';
 
 describe('Buying products:', () => {
     before(() => {
         browser.url('/');
     });
 
-    function getElement(cssAsString: string) {
-        return $(cssAsString);
-      }
+    /**
+     * Wraps locators strings to provide lazy initialization.
+     * @param locatorAsString String with css or xpath locator.
+     */
+    function getElement(locatorAsString: string): Client<RawResult<Element>> & RawResult<Element> {
+        return $(locatorAsString);
+    }
 
-    it('should buy one item', () => {
+    it('should buy one item with size option', () => {
         const popularProductsTab = 'a[href*="popular-products"]';
-        const purpleDuck = '#box-popular-products .product[data-name="Purple Duck"]';
+        const yellowDuck = '#box-popular-products .product[data-name="Yellow Duck"]';
         const shoppingCart = '#cart';
         const addToCartBtn = 'button.btn-success';
         const productInfo = '#box-product';
+        const itemSize = 'select[name="options[Size]"]';
         const closePopUp = '.featherlight-close-icon';
         const cartQuantity = '#cart .quantity';
         const itemsList = '.item';
@@ -31,14 +37,14 @@ describe('Buying products:', () => {
         const confirmOrder = '.btn-success';
         const orderSuccessPage = '#box-order-success';
         getElement(popularProductsTab).click();
-        getElement(purpleDuck).click();
+        getElement(yellowDuck).click();
         browser.waitForVisible(productInfo);
+        getElement(itemSize).selectByValue('Large');
         getElement(addToCartBtn).click();
         getElement(closePopUp).click();
-        const waitCartQuantity = browser.waitUntil(() => {
+        browser.waitUntil(() => {
             return getElement(cartQuantity).getText() === '1';
         }, 2000, 'There is more/less than 1 item in shopping cart', 100);
-        expect(waitCartQuantity).to.be.true;
         getElement(shoppingCart).click();
         browser.waitForVisible(itemsList);
         expect($$(itemsList).length).to.be.equal(1);
