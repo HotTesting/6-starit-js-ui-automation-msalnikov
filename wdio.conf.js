@@ -20,5 +20,14 @@ exports.config = {
     framework: 'mocha',
     mochaOpts: {
         ui: 'bdd'
+    },
+    before: () => {
+        browser.timeouts('implicit', 2000);
+    },
+    afterHook: () => {
+        browser.timeouts('implicit', 2000);
+        browser.deleteCookie('LCSESSID');
+        browser.deleteCookie('cart[uid]');
+        browser.sessionStorage('DELETE');
     }
 }
