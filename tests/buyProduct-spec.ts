@@ -2,7 +2,6 @@ import { Client, Element, RawResult } from 'webdriverio';
 
 import { expect } from 'chai';
 import * as faker from 'faker';
-import { Client, Element, RawResult } from 'webdriverio';
 
 describe('Buying products:', () => {
     before(() => {
