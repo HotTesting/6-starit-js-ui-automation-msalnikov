@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as faker from 'faker';
 
-describe('Buying products', () => {
+describe('Buying products:', () => {
     before(() => {
         browser.url('/');
     });
