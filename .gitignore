@@ -2,4 +2,6 @@
 node_modules/
 # compiled js and debug files
 built/
+#IDE folders
 .vscode/settings.json
+.idea
