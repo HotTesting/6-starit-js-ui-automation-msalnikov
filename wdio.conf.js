@@ -1,5 +1,5 @@
-process.env.TS_NODE_FILES = true
-require('ts-node').register()
+process.env.TS_NODE_FILES = true;
+require('ts-node').register();
 
 exports.config = {
     specs: [
@@ -27,8 +27,5 @@ exports.config = {
     },
     afterHook: () => {
         browser.timeouts('implicit', 2000);
-        browser.deleteCookie('LCSESSID');
-        browser.deleteCookie('cart[uid]');
-        browser.sessionStorage('DELETE');
     }
-}
+};
